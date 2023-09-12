@@ -1,0 +1,14 @@
+# Temp files
+*~
+
+# Compile results
+env/**
+**/__pycache__/**
+**/migrations/**
+*pyc
+
+# Rando's
+todo
+.DS_Store
+.idea
+db.sqlite3
