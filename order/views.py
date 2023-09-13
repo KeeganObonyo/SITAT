@@ -29,7 +29,7 @@ def send_sms(self,message=None,recipients=None):
 
     africastalking.initialize(username, api_key)
     self.sms = africastalking.SMS
-    sender   = "123456"
+    sender   = AFRICASTALKING_SENDER_ID
     try:
         response = self.sms.send(message, recipients, sender)
         return response

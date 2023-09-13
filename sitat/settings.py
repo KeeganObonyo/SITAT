@@ -226,6 +226,9 @@ NOSE_ARGS = [
     '--cover-package=customer,order',
 ]
 
-AFRICASTALKING_USERNAME = 'sandbox'
+#Auth credentials generated from AT Sandbox for testing
+AFRICASTALKING_USERNAME  = 'sandbox'
 
-AFRICASTALKING_APIKEY   = '0198d66b16da199bfda8b112972aa7a1d8b6d8f2259b6d279118765ebbd9932d'
+AFRICASTALKING_APIKEY    = '0198d66b16da199bfda8b112972aa7a1d8b6d8f2259b6d279118765ebbd9932d'
+
+AFRICASTALKING_SENDER_ID = '123456'
