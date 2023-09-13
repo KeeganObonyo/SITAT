@@ -5,14 +5,7 @@ from django.core.urlresolvers import reverse
 
 from rest_framework.test import APITestCase
 
-from customer.models import *
-
-from .views import *
-from .models import *
-from .serializers import *
-
-jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
-
+from .models import Customer
 
 def token_retrieve(self):
     login_cred = {

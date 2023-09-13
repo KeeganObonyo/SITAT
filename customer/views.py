@@ -6,7 +6,6 @@ from rest_framework.views import APIView
 from .custom_jwt import jwt_payload_handler
 from rest_framework_jwt.settings import api_settings
 jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
-jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
 from .models import Customer
 from .serializers import (

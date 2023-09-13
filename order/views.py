@@ -3,14 +3,14 @@ from django.http import Http404
 from django.db.models import Q
 
 from rest_framework.response import Response
-from rest_framework import generics, status, permissions
+from rest_framework import generics, status
 from rest_framework_jwt.settings import api_settings
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
 from customer.models import Customer
 
-from .models import ( CustomerOrder, OrderItem )
-from .serializers import ( OrderSerializer, OrderItemSerializer)
+from .models import CustomerOrder, OrderItem
+from .serializers import OrderSerializer, OrderItemSerializer
 
 def get_auth(request=None):
     """

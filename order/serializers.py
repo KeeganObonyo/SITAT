@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 from customer.serializers import CustomerSerializer
 
-from .models import ( CustomerOrder, OrderItem )
+from .models import CustomerOrder, OrderItem
 
 class OrderItemSerializer(serializers.ModelSerializer):
     class Meta:

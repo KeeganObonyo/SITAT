@@ -2,19 +2,12 @@ from django.core.urlresolvers import reverse
 from django.utils import timezone
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from django.contrib.auth.models import (
-    Group,User
-)
+from django.contrib.auth.models import Group, User
 from rest_framework.test import APITestCase
 
-from customer.models import *
+from customer.models import Customer
 
-from .views import *
-from .models import *
-from .serializers import *
-
-jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
-
+from .models import CustomerOrder, OrderItem
 
 def token_retrieve(self):
     login_cred = {

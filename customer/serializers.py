@@ -3,15 +3,9 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 
 from rest_framework import serializers
-from rest_framework.serializers import (
-    EmailField,
-    ModelSerializer,
-)
+from rest_framework.serializers import EmailField, ModelSerializer
 
-from order.models import ( 
-    CustomerOrder,
-    OrderItem
-)
+from order.models import CustomerOrder, OrderItem
 from .models import Customer
 
 class CustomerSerializer(ModelSerializer):
