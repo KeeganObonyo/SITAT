@@ -26,10 +26,10 @@ def get_auth(request=None):
 def send_sms(self,message=None,recipients=None):
     username = AFRICASTALKING_USERNAME
     api_key  = AFRICASTALKING_APIKEY
+    sender   = AFRICASTALKING_SENDER_ID
 
     africastalking.initialize(username, api_key)
     self.sms = africastalking.SMS
-    sender   = AFRICASTALKING_SENDER_ID
     try:
         response = self.sms.send(message, recipients, sender)
         return response
