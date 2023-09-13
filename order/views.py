@@ -7,19 +7,35 @@ from rest_framework import generics, status
 from rest_framework_jwt.settings import api_settings
 jwt_decode_handler = api_settings.JWT_DECODE_HANDLER
 
+import africastalking
+
+from  sitat.settings import *
+
 from customer.models import Customer
 
 from .models import CustomerOrder, OrderItem
 from .serializers import OrderSerializer, OrderItemSerializer
 
 def get_auth(request=None):
-    """
-    """
     try:
         user_id = jwt_decode_handler(request.auth)["user_id"]
     except Exception as e:
         return str(e)
     return user_id
+
+def send_sms(self,message=None,recipients=None):
+    username = AFRICASTALKING_USERNAME
+    api_key  = AFRICASTALKING_APIKEY
+
+    africastalking.initialize(username, api_key)
+    self.sms = africastalking.SMS
+    sender   = "123456"
+    try:
+        response = self.sms.send(message, recipients, sender)
+        return response
+    except Exception as e:
+        return Response(data={"Error": str(e)},
+                        status=status.HTTP_400_BAD_REQUEST)
 
 class Order(generics.CreateAPIView):
     """
@@ -61,7 +77,12 @@ class Order(generics.CreateAPIView):
                 )
             order.cost = order.get_order_cost()
             order.save()
-            return Response(status=status.HTTP_201_CREATED)
+            response = send_sms(self,message="Your order has been received",recipients=[customer.phone_number])
+            if response.status_code == 200:
+                return Response(status=status.HTTP_201_CREATED)
+            else:
+                return Response(data={"Error": "Message wasn't sent to customer"},
+                                status=status.HTTP_200_OK)
         except Exception as e:
             return Response(data={"Error": str(e)},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -97,7 +118,12 @@ class AddOrderItem(generics.CreateAPIView):
             order.cost    = order.get_order_cost()
             order.cleared = 'False'
             order.save()
-            return Response(status=status.HTTP_201_CREATED)
+            response = send_sms(self,message="Your order has been modified",recipients=[order.customer.phone_number])
+            if response.status_code == 200:
+                return Response(status=status.HTTP_201_CREATED)
+            else:
+                return Response(data={"Error": "Message wasn't sent to customer"},
+                                status=status.HTTP_200_OK)
         except Exception as e:
             return Response(data={"Error": str(e)},
                             status=status.HTTP_400_BAD_REQUEST)
@@ -131,7 +157,15 @@ class ExecuteOrderItem(generics.CreateAPIView):
             order_item.save()
             order.cleared = order.get_order_status()
             order.save()
-            return Response(status=status.HTTP_201_CREATED)
+            if order.get_order_status() == True:
+                response = send_sms(self,message="Your order has been cleared",recipients=[order.customer.phone_number])
+                if response.status_code == 200:
+                    return Response(status=status.HTTP_201_CREATED)
+                else:
+                    return Response(data={"Error": "Order is cleared but Message wasn't sent to customer"},
+                                    status=status.HTTP_200_OK)
+            else:
+                return Response(status=status.HTTP_201_CREATED)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
@@ -170,4 +204,3 @@ class OrderItemListView(generics.ListAPIView):
             return queryset_list
         else:
             return queryset_list
-

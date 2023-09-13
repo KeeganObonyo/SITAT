@@ -129,10 +129,10 @@ class OrderTest(APITestCase):
                  "description": "A Text too"},],
             "description": "A text",
             "currency":"KES"
-
         }
         response = self.client.post(url, valid_data, format='json')
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, {"Error": "Message wasn't sent to customer"})
         self.assertEqual(CustomerOrder.objects.all().count(), 2)
         self.assertEqual(OrderItem.objects.all().count(), 2)
         self.assertEqual(CustomerOrder.objects.filter(
@@ -151,7 +151,8 @@ class OrderTest(APITestCase):
         }
         response      = self.client.post(url, valid_data, format='json')
         updated_order = CustomerOrder.objects.get(id = 1)
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, {"Error": "Message wasn't sent to customer"})
         self.assertEqual(OrderItem.objects.all().count(), 2)
         self.assertEqual(OrderItem.objects.filter(
             description="Another Text").exists(), True)

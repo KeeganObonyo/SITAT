@@ -46,6 +46,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_nose',
     'order',
     'rest_framework',
     'rest_framework.authtoken',
@@ -215,3 +216,16 @@ JWT_AUTH = {
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
     'JWT_AUTH_COOKIE': None,
 }
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'customer' and 'order' apps
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=customer,order',
+]
+
+AFRICASTALKING_USERNAME = 'sandbox'
+
+AFRICASTALKING_APIKEY   = '0198d66b16da199bfda8b112972aa7a1d8b6d8f2259b6d279118765ebbd9932d'
