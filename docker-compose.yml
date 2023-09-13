@@ -22,7 +22,7 @@ services:
       context: .
       dockerfile: Dockerfile
     hostname: web
-    command: /app/lab/run_web.sh
+    command: /app/sitat/run_web.sh
     # volumes:
     #   - .:/app
     ports:

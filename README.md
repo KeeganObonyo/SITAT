@@ -9,6 +9,6 @@
 
 4. Run the unit tests: ./manage.py test
 
-5. Run the project locally: python manage.py runserver
+5. Run the project locally: python manage.py runserver and Browse to [http://localhost:8080](http://localhost:8080/)
 
 #For Deployment
