@@ -13,3 +13,10 @@ todo
 .idea
 db.sqlite3
 .coverage
+
+#coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover

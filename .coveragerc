@@ -1,0 +1,9 @@
+[coverage:run]
+source = .
+omit =
+   */node_modules/*
+   */env/*
+[coverage:report]
+fail_under   = 80
+show_missing = True
+skip_covered = True
