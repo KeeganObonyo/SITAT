@@ -128,21 +128,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'sitat.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/1.8/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'postgres',
-#         'USER': os.environ['DB_USER'],
-#         'PASSWORD': os.environ['DB_PASSWORD'],
-#         'HOST': 'localhost',
-#         'PORT': 5432,
-#     }
-# }
-
 if 'postgresql' in os.environ:
     DATABASES = {
         'default': {

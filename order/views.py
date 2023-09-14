@@ -16,13 +16,6 @@ from customer.models import Customer
 from .models import CustomerOrder, OrderItem
 from .serializers import OrderSerializer, OrderItemSerializer
 
-def get_auth(request=None):
-    try:
-        user_id = jwt_decode_handler(request.auth)["user_id"]
-    except Exception as e:
-        return str(e)
-    return user_id
-
 def send_sms(self,message=None,recipients=None):
     username = AFRICASTALKING_USERNAME
     api_key  = AFRICASTALKING_APIKEY
@@ -59,7 +52,7 @@ class Order(generics.CreateAPIView):
                 description = request.data['description']
             except:
                 description = None
-            customer = Customer.objects.get(id=get_auth(request))
+            customer = Customer.objects.get(id=jwt_decode_handler(request.auth)["user_id"])
             order = CustomerOrder.objects.create(
                 description = description,
                 customer    = customer,
