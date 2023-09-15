@@ -31,7 +31,6 @@ jobs:
     - name: Install heroku deployment dependencies
       run: |
         curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
-    - name: Deploy
+    - name: Build Image And Deploy
       run: |
-        heroku stack:set container
-        git push heroku master
+          build-image.sh build
