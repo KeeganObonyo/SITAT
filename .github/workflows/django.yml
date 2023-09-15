@@ -33,4 +33,5 @@ jobs:
         curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - name: Build Image And Deploy
       run: |
-          build-image.sh build
+        chmod +x ./build-image.sh
+        ./build-image.sh
