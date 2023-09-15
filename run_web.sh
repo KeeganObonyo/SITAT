@@ -4,10 +4,11 @@ sleep 10
  
 cd /app/sitat/
 
-su -m root -c "python manage.py makemigrations"    
+echo Setting Up.
+exec python manage.py makemigrations
+exec python manage.py migrate
+exec python manage.py collectstatic
 
-su -m root -c "python manage.py migrate"
-
-su -m root -C "python manage.py collectstatic"
-
-su -m root -c "gunicorn --bind 0.0.0.0:9000 sitat.wsgi:application"
+echo Starting Gunicorn.
+exec gunicorn --reload sitat.sitat.wsgi:application \
+    --bind 0.0.0.0:9000
