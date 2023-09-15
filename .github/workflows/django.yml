@@ -28,3 +28,10 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
+    - name: Install heroku deployment dependencies
+      run: |
+        curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
+    - name: Deploy
+      run: |
+        heroku stack:set container
+        git push heroku master
