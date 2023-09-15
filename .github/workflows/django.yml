@@ -28,9 +28,6 @@ jobs:
     - name: Run Tests
       run: |
         python manage.py test
-    - name: Install heroku deployment dependencies
-      run: |
-        curl https://cli-assets.heroku.com/install-ubuntu.sh | sh
     - name: Build Image And Deploy
       run: |
         chmod +x ./build-image.sh
