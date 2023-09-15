@@ -5,12 +5,12 @@ from django.db import models
 from customer.models import Customer
 
 class CustomerOrder(models.Model):
-    customer     = models.ForeignKey(Customer, related_name="customer_order")
+    customer     = models.ForeignKey(Customer, related_name="customer_order", on_delete=models.CASCADE)
     description  = models.CharField(max_length=200, null=True, blank=True)
     currency     = models.CharField(max_length=200)
     cost         = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
     created      = models.DateTimeField(auto_now_add=True)
-    cleared      = models.NullBooleanField(default=False, null=True, blank=True)
+    cleared      = models.BooleanField(default=False, null=True, blank=True)
     updated      = models.DateTimeField(auto_now=True)
 
     class Meta:
@@ -30,8 +30,8 @@ class CustomerOrder(models.Model):
          for item in self.orderitems.all())
 
 class OrderItem(models.Model):
-    order       = models.ForeignKey(CustomerOrder, related_name='orderitems', null=True)
-    cleared     = models.NullBooleanField(default=False, null=True, blank=True)
+    order       = models.ForeignKey(CustomerOrder, related_name='orderitems', on_delete=models.CASCADE)
+    cleared     = models.BooleanField(default=False, null=True, blank=True)
     description = models.CharField(max_length=200, null=True, blank=True)
     cost        = models.DecimalField(max_digits=10, decimal_places=3, null=True, blank=True)
     updated     = models.DateTimeField(auto_now=True)

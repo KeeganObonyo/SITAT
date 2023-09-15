@@ -38,7 +38,6 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = (
-    'admin_view_permission',
     'customer',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,13 +73,13 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissions',
     ),
 }
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -109,6 +108,8 @@ CORS_ALLOW_HEADERS = (
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'sitat.urls'
+
+DEFAULT_AUTO_FIELD='django.db.models.AutoField'
 
 TEMPLATES = [
     {
