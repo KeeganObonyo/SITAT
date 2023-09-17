@@ -18,6 +18,6 @@ The project uses Django framework with Django REST framework.
 7. Run the project locally: cd to the project folder and run `python manage.py runserver` or run with `docker-compose up` command. and Browse to [http://localhost:8080](http://localhost:8080/).
 
 #For Deployment
-The Project uses Githubs work flows for CI/CD and deploys to Azure service web app. One reqires to set up an Azure Web App and add the necessary authorization credentials to push the docker image after creation.
+The Project uses Githubs work flows for CI/CD and deploys to Azure service web app. One reqires to set up an Azure Web App and add the necessary authorization credentials to push the docker image after creation. More details are contained in the azure-container-webapp.yml comments.
 
 A postgress DB instance will be created on Azure as well.
