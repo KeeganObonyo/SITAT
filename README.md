@@ -14,4 +14,6 @@
 6. Go to https://developers.africastalking.com/simulator, initiate the simulator with your desired phone  number for testing and generate a SandBox ApiKey for testing purposes. Replace These on the settings.py file.
 
 7. Run the project locally: cd to the project folder and run `python manage.py runserver` or run with `docker-compose up` command. and Browse to [http://localhost:8080](http://localhost:8080/).
+
 #For Deployment
+The Project uses Githubs work flows for CI/CD and deploys to Azure service web app. One reqires to set up an Azure Web App and add the necessary authorization credentials to push the docker image after creation.
