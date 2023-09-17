@@ -10,6 +10,7 @@ WORKDIR /app/sitat/
 # install python 3 and pip
 RUN apt-get update
 RUN apt-get install python3 -y
+RUN apt install pip --upgrade pip
 
 # make python 3 default python environment
 RUN alias python=python3
