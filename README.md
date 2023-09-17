@@ -1,5 +1,7 @@
 #Savannah Informatics Technical Assessment Test
 
+The project uses Django framework with Django REST framework.
+
 #To run and test locally.
 1.  Use virtualenv to create a local environment.
 
@@ -17,3 +19,5 @@
 
 #For Deployment
 The Project uses Githubs work flows for CI/CD and deploys to Azure service web app. One reqires to set up an Azure Web App and add the necessary authorization credentials to push the docker image after creation.
+
+A postgress DB instance will be created on Azure as well.
